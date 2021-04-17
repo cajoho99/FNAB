@@ -17,8 +17,6 @@ public class MachineOven : AbstractFactoryObject
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("xd" + conveyedObjects.Count);
-
         if (conveyedObjects.Count == 0)
         {
             return;

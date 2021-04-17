@@ -50,7 +50,6 @@ public class ConveyorBelt :  AbstractFactoryObject
                 }
                 else
                 {
-                    Debug.Log("Gave to next Conveyor");
                     nextConveyor.addConveyedItem(obj);
                     dequeue = true;
                 }
@@ -59,7 +58,6 @@ public class ConveyorBelt :  AbstractFactoryObject
 
         if (dequeue)
         {
-            Debug.Log("Deleted from self");
             conveyedObjects.Dequeue();
         }
 
