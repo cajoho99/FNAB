@@ -8,6 +8,7 @@ public class ConveyorController : MonoBehaviour
     public GameObject conveyor;
     public GameObject conveyedItem;
     public GameObject ovenItem;
+    public GameObject hopper;
 
     List<GameObject> conveyors = new List<GameObject>();
     List<ConveyorBelt> conveyorBelts = new List<ConveyorBelt>();
@@ -35,6 +36,17 @@ public class ConveyorController : MonoBehaviour
         oven.setDirection(MachineOven.DIRECTION.SOUTH);
         lastBelt.transform.position += new Vector3(conveyors.Count + 1, - 3);
         oven.setNextConveyor(lastBelt);
+
+        Hopper ohopper = Instantiate(hopper, transform.position, transform.rotation).GetComponent<Hopper>();
+
+        ohopper.transform.position += new Vector3(2, 0);
+        ohopper.setNextConveyor(conveyorBelts[0]);
+
+        for(int i = 0; i < 10; i++)
+        {
+            ohopper.addConveyedItem(Instantiate(conveyedItem, transform.position + new Vector3(2, 0), transform.rotation).GetComponent<GenericFood>());
+        }
+        
         
        
 

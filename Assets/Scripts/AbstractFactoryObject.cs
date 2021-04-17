@@ -47,4 +47,6 @@ public class AbstractFactoryObject : MonoBehaviour
             conveyor.addConveyedItem(idleObj);
         }
     }
+
+ 
 }
