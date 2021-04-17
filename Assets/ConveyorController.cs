@@ -7,6 +7,7 @@ public class ConveyorController : MonoBehaviour
 
     public GameObject conveyor;
     public GameObject conveyedItem;
+    public GameObject ovenItem;
 
     List<GameObject> conveyors = new List<GameObject>();
     List<ConveyorBelt> conveyorBelts = new List<ConveyorBelt>();
@@ -24,6 +25,17 @@ public class ConveyorController : MonoBehaviour
         conveyors[conveyors.Count - 1].transform.position += new Vector3(conveyors.Count + 1, -1);
         conveyorBelts[conveyors.Count - 1].setDirection(ConveyorBelt.DIRECTION.SOUTH);
         conveyorBelts[conveyors.Count - 2].setNextConveyor(conveyorBelts[conveyors.Count - 1]);
+
+        MachineOven oven = Instantiate(ovenItem, transform.position, transform.rotation).GetComponent<MachineOven>();
+        ConveyorBelt lastBelt = Instantiate(conveyor, transform.position, transform.rotation).GetComponent<ConveyorBelt>();
+
+
+        oven.transform.position += new Vector3(conveyors.Count + 1, -2);
+        oven.setDirection(MachineOven.DIRECTION.SOUTH);
+        lastBelt.transform.position += new Vector3(conveyors.Count + 1, - 3);
+        oven.setNextConveyor(lastBelt);
+       
+
     }
 
     void Spawn()
@@ -36,7 +48,7 @@ public class ConveyorController : MonoBehaviour
         }
         else
         {
-            conveyorBelts[conveyors.Count - 1].addConveyedItem(Instantiate(conveyedItem, transform.position, transform.rotation));
+            conveyorBelts[conveyors.Count - 1].addConveyedItem(Instantiate(conveyedItem, transform.position, transform.rotation).GetComponent<GenericFood>());
         }
     }
 
