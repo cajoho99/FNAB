@@ -36,7 +36,7 @@ public class ConveyorController : MonoBehaviour
         }
         else
         {
-            conveyorBelts[conveyors.Count - 1].addConveyedItem(Instantiate(conveyedItem, transform.position, transform.rotation));
+            conveyorBelts[conveyors.Count - 1].addConveyedItem(Instantiate(conveyedItem, transform.position, transform.rotation).GetComponent<GenericFood>());
         }
     }
 
