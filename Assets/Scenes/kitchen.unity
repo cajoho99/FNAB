@@ -2271,6 +2271,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1461848390}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &490129038 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5263503681745845343, guid: ed37d549e3f26af479b7ca6bd72d5193,
+    type: 3}
+  m_PrefabInstance: {fileID: 1461848390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &490129043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3318,7 +3324,7 @@ PrefabInstance:
         type: 3}
       propertyPath: spriterenderer
       value: 
-      objectReference: {fileID: 475374253}
+      objectReference: {fileID: 490129038}
     - target: {fileID: 5263503681745845342, guid: ed37d549e3f26af479b7ca6bd72d5193,
         type: 3}
       propertyPath: spriteup.Array.size
@@ -3435,6 +3441,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7446500790369089995, guid: fb7aff356034cc9489c0dc6517c113f6,
         type: 3}
+    - target: {fileID: 5263503681745845343, guid: ed37d549e3f26af479b7ca6bd72d5193,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263503681745845343, guid: ed37d549e3f26af479b7ca6bd72d5193,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263503681745845343, guid: ed37d549e3f26af479b7ca6bd72d5193,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed37d549e3f26af479b7ca6bd72d5193, type: 3}
 --- !u!1 &1576941805
