@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float movementSpeed;
     public float smoothing;
+<<<<<<< HEAD
     public int ticksBetweenAnimation = 5;
     public enum AnimationDirection
     {
@@ -20,12 +21,16 @@ public class PlayerController : MonoBehaviour
     public Sprite[] spriteleft;
     public Sprite[] spriteright;
     public SpriteRenderer spriterenderer;
+=======
+    
+>>>>>>> 724ca1ff59a89a6d755887288649374ddbb86b51
 
     private Rigidbody2D rigidBody;
     private Vector3 velocity = Vector3.zero;
     private AnimationDirection animationDirection = AnimationDirection.Down;
     private int animationIndex = 0;
     private int framecounter = 0;
+
 
 
     private void Awake()
@@ -48,6 +53,7 @@ public class PlayerController : MonoBehaviour
         targetVelocity.Normalize();
         targetVelocity *= movementSpeed;
         rigidBody.velocity = Vector3.SmoothDamp(rigidBody.velocity, targetVelocity, ref velocity, smoothing);
+
     }
 
     private void FixedUpdate()
