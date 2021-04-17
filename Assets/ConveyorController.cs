@@ -29,8 +29,11 @@ public class ConveyorController : MonoBehaviour
         MachineOven oven = Instantiate(ovenItem, transform.position, transform.rotation).GetComponent<MachineOven>();
         ConveyorBelt lastBelt = Instantiate(conveyor, transform.position, transform.rotation).GetComponent<ConveyorBelt>();
 
+
         oven.transform.position += new Vector3(conveyors.Count + 1, -2);
         oven.setDirection(MachineOven.DIRECTION.SOUTH);
+        lastBelt.transform.position += new Vector3(conveyors.Count + 1, - 3);
+        oven.setNextConveyor(lastBelt);
        
 
     }
