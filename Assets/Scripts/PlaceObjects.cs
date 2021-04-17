@@ -22,6 +22,10 @@ public class PlaceObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(DayNightManager.IsNight())
+        {
+            return;
+        }
         if(Input.GetKeyDown(KeyCode.Q)){
             objectIndex = mod((objectIndex - 1), objectsToPlace.Count);
             Debug.Log("Index of item: " + objectIndex);
@@ -35,7 +39,6 @@ public class PlaceObjects : MonoBehaviour
         {
             Vector3Int pos = objectsToPlace[objectIndex].tilemapLayer.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             objectsToPlace[objectIndex].tilemapLayer.SetTile(pos, objectsToPlace[objectIndex].tile);
-            
         }
 
         Vector3Int tilemapPos = objectsToPlace[objectIndex].tilemapLayer.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
