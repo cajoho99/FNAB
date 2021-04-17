@@ -49,6 +49,15 @@ public class PlayerController : MonoBehaviour
         targetVelocity.Normalize();
         targetVelocity *= movementSpeed;
         rigidBody.velocity = Vector3.SmoothDamp(rigidBody.velocity, targetVelocity, ref velocity, smoothing);
+    
+        if(Input.GetKeyDown(KeyCode.N))
+        {
+            DayNightManager.ChangeTime();
+        }
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            Debug.Log(DayNightManager.Time);
+        }
     }
 
     private void FixedUpdate()
