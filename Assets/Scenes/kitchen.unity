@@ -2291,14 +2291,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlight: {fileID: 11400000, guid: 34303d25145ab104f8fabf97fe65552d, type: 2}
   highlightMap: {fileID: 2013456866}
+  objectMap: {fileID: 1982102088}
   objectIndex: 0
-  objectsToPlace:
-  - tile: {fileID: 11400000, guid: b52eb31537a3c0f4d9b909925745af72, type: 2}
-    tilemapLayer: {fileID: 332384058}
-  - tile: {fileID: 11400000, guid: f72e555fb5873964dbaddca86c7e47c6, type: 2}
-    tilemapLayer: {fileID: 332384058}
-  - tile: {fileID: 11400000, guid: 482f111f39d0bb54587ed8f02772d8d6, type: 2}
-    tilemapLayer: {fileID: 709834880}
+  rotation: {x: 0, y: 0, z: 0}
+  placeableObjects:
+  - {fileID: 0}
 --- !u!1 &709834876
 GameObject:
   m_ObjectHideFlags: 0

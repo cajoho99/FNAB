@@ -8,11 +8,13 @@ public class PlaceObjects : MonoBehaviour
 {
     public Tile highlight;
     public Tilemap highlightMap;
+    public Tilemap objectMap;
 
     [SerializeField] private int objectIndex = 0;
+    
+    public Vector3 rotation;
 
-
-    public List<ObjectToPlace> objectsToPlace;
+    public List<GameObject> placeableObjects;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,22 +28,31 @@ public class PlaceObjects : MonoBehaviour
         {
             return;
         }
-        if(Input.GetKeyDown(KeyCode.Q)){
-            objectIndex = mod((objectIndex - 1), objectsToPlace.Count);
+        if(Input.GetKeyDown(KeyCode.R)){
+            objectIndex = mod((objectIndex - 1), placeableObjects.Count);
             Debug.Log("Index of item: " + objectIndex);
         }
-        if(Input.GetKeyDown(KeyCode.E)){
-            objectIndex = mod((objectIndex + 1), objectsToPlace.Count);
+        if(Input.GetKeyDown(KeyCode.F)){
+            objectIndex = mod((objectIndex + 1), placeableObjects.Count);
             Debug.Log("Index of item: " + objectIndex);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            this.rotation = new Vector3(0, 0, mod((int)rotation.z - 90, 360));
+        }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            this.rotation = new Vector3(0, 0, mod((int)rotation.z + 90, 360));
         }
 
         if(Input.GetMouseButtonDown(0))
         {
-            Vector3Int pos = objectsToPlace[objectIndex].tilemapLayer.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            objectsToPlace[objectIndex].tilemapLayer.SetTile(pos, objectsToPlace[objectIndex].tile);
+            Vector3Int pos = objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            Instantiate(placeableObjects[objectIndex], pos, Quaternion.Euler(rotation));
         }
 
-        Vector3Int tilemapPos = objectsToPlace[objectIndex].tilemapLayer.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        Vector3Int tilemapPos = objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         HighlightTile(tilemapPos);
     }
 
@@ -54,11 +65,4 @@ public class PlaceObjects : MonoBehaviour
     private int mod(int x, int m) {
         return (x%m + m)%m;
     }
-}
-
-[System.Serializable]
-public struct ObjectToPlace
-{
-    [SerializeField] public Tile tile;
-    [SerializeField] public Tilemap tilemapLayer;
 }
