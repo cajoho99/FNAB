@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpriteAnimation : MonoBehaviour
 {
+    public new string name;
     public SpriteRenderer spriteRenderer;
     public Sprite[] sprites;
     public int ticksBetweenAnimation;

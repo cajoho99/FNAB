@@ -18,11 +18,10 @@ public class AbstractFactoryObject : MonoBehaviour
     // In which direction the conveyor currently moves items.
     public DIRECTION currentDirection = DIRECTION.EAST;
 
-    public void setDirection(DIRECTION dir)
+    public virtual void setDirection(DIRECTION dir)
     {
         currentDirection = dir;
     }
-
     // Which objects the conveyor currently 'owns'
     public Queue<GenericFood> conveyedObjects = new Queue<GenericFood>();
 

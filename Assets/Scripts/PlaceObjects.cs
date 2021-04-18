@@ -8,11 +8,13 @@ public class PlaceObjects : MonoBehaviour
 {
     public Tile highlight;
     public Tilemap highlightMap;
+    public Tilemap objectMap;
 
     [SerializeField] private int objectIndex = 0;
+    
+    public Vector3 rotation;
 
-
-    public List<ObjectToPlace> objectsToPlace;
+    public List<GameObject> placeableObjects;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,23 +30,53 @@ public class PlaceObjects : MonoBehaviour
         {
             return;
         }
-        if(Input.GetKeyDown(KeyCode.Q)){
-            objectIndex = mod((objectIndex - 1), objectsToPlace.Count);
+        if(Input.GetKeyDown(KeyCode.R)){
+            objectIndex = mod((objectIndex - 1), placeableObjects.Count);
             Debug.Log("Index of item: " + objectIndex);
         }
-        if(Input.GetKeyDown(KeyCode.E)){
-            objectIndex = mod((objectIndex + 1), objectsToPlace.Count);
+        if(Input.GetKeyDown(KeyCode.F)){
+            objectIndex = mod((objectIndex + 1), placeableObjects.Count);
             Debug.Log("Index of item: " + objectIndex);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            this.rotation = new Vector3(0, 0, mod((int)rotation.z + 90, 360));
+        }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            this.rotation = new Vector3(0, 0, mod((int)rotation.z - 90, 360));
         }
 
         if(Input.GetMouseButtonDown(0))
         {
-
-            Vector3Int pos = objectsToPlace[objectIndex].tilemapLayer.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            objectsToPlace[objectIndex].tilemapLayer.SetTile(pos, objectsToPlace[objectIndex].tile);
+            Vector3 pos = objectMap.CellToWorld(objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
+            Vector3 worldPos = new Vector3(pos.x + 0.4f, pos.y + 0.4f, pos.z);
+            GameObject go = Instantiate(placeableObjects[objectIndex], worldPos, Quaternion.Euler(rotation));
+            AbstractFactoryObject abstractFactoryObject = go.GetComponent<AbstractFactoryObject>();
+            if(rotation.z <= 1f)
+            {
+                abstractFactoryObject.setDirection(AbstractFactoryObject.DIRECTION.SOUTH);
+            }
+            else if(rotation.z <= 91)
+            {
+                abstractFactoryObject.setDirection(AbstractFactoryObject.DIRECTION.WEST);
+            }
+            else if(rotation.z <= 181f)
+            {
+                abstractFactoryObject.setDirection(AbstractFactoryObject.DIRECTION.NORTH);
+            }
+            else if(rotation.z <= 241f)
+            {
+                abstractFactoryObject.setDirection(AbstractFactoryObject.DIRECTION.EAST);
+            }
+            else 
+            {
+                Debug.LogError("This should not be happening. If happening consult consultant functional ab");
+            }
         }
 
-        Vector3Int tilemapPos = objectsToPlace[objectIndex].tilemapLayer.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        Vector3Int tilemapPos = objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         HighlightTile(tilemapPos);
     }
 
@@ -52,33 +84,10 @@ public class PlaceObjects : MonoBehaviour
     {
         highlightMap.ClearAllTiles();
         highlightMap.SetTile(tilemapPos, highlight);
+        highlightMap.SetTransformMatrix(tilemapPos, Matrix4x4.Rotate(Quaternion.Euler(rotation)));
     }
 
     private int mod(int x, int m) {
         return (x%m + m)%m;
     }
-}
-
-public class TileInstance
-{
-    public Vector3Int position;
-    public int layer;
-    public Tile tile;
-
-    public TileInstance(Vector3Int position, int layer, Tile tile)
-    {
-        this.position = position;
-        this.layer = layer;
-        this.tile = tile;
-    }
-}
-
-
-
-
-[System.Serializable]
-public struct ObjectToPlace
-{
-    [SerializeField] public Tile tile;
-    [SerializeField] public Tilemap tilemapLayer;
 }
