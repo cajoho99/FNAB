@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     public float movementSpeed;
     public float smoothing;
-    public int ticksBetweenAnimation = 5;
     public enum AnimationDirection
     {
         Up,
@@ -15,19 +14,14 @@ public class PlayerController : MonoBehaviour
         Right,
         Idle
     }
-    public Sprite[] spriteup;
-    public Sprite[] spritedown;
-    public Sprite[] spriteleft;
-    public Sprite[] spriteright;
-    public SpriteRenderer spriterenderer;
+    public SpriteAnimation animUp;
+    public SpriteAnimation animRight;
+    public SpriteAnimation animDown;
+    public SpriteAnimation animLeft;
 
     private Rigidbody2D rigidBody;
     private Vector3 velocity = Vector3.zero;
-    private AnimationDirection animationDirection = AnimationDirection.Down;
-    private int animationIndex = 0;
-    private int framecounter = 0;
-
-
+    private AnimationDirection animationDirection = AnimationDirection.Idle;
 
     private void Awake()
     {
@@ -37,7 +31,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        animDown.SetDefault();
     }
 
     // Update is called once per frame
@@ -49,12 +43,12 @@ public class PlayerController : MonoBehaviour
         targetVelocity.Normalize();
         targetVelocity *= movementSpeed;
         rigidBody.velocity = Vector3.SmoothDamp(rigidBody.velocity, targetVelocity, ref velocity, smoothing);
-    
-        if(Input.GetKeyDown(KeyCode.N))
+
+        if (Input.GetKeyDown(KeyCode.N))
         {
             DayNightManager.ChangeTime();
         }
-        if(Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             Debug.Log(DayNightManager.Time);
         }
@@ -62,107 +56,95 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckDirection();
-        if (animationDirection == AnimationDirection.Up)
+        var prevAnimDir = animationDirection;
+        var changed = CheckDirection();
+        if (changed)
         {
-            if (ticksBetweenAnimation <= framecounter)
+            var prevAnim = GetAnim(prevAnimDir);
+            if (prevAnim)
             {
-                framecounter = 0;
-                animationIndex++;
-                if (animationIndex >= spriteup.Length)
-                {
-                    animationIndex = 0;
-                }
+                prevAnim.Disable();
             }
-            else
+            switch (animationDirection)
             {
-                framecounter++;
+                case AnimationDirection.Up:
+                    animUp.Enable();
+                    break;
+                case AnimationDirection.Right:
+                    animRight.Enable();
+                    break;
+                case AnimationDirection.Down:
+                    animDown.Enable();
+                    break;
+                case AnimationDirection.Left:
+                    animLeft.Enable();
+                    break;
+                case AnimationDirection.Idle:
+                    prevAnim.SetDefault();
+                    break;
             }
-            spriterenderer.sprite = spriteup[animationIndex];
-        }
-        else if (animationDirection == AnimationDirection.Down)
-        {
-            if (ticksBetweenAnimation <= framecounter)
-            {
-                framecounter = 0;
-                animationIndex++;
-                if (animationIndex >= spritedown.Length)
-                {
-                    animationIndex = 0;
-                }
-            }
-            else
-            {
-                framecounter++;
-            }
-            spriterenderer.sprite = spritedown[animationIndex];
-        }
-        else if (animationDirection == AnimationDirection.Left)
-        {
-            if (ticksBetweenAnimation <= framecounter)
-            {
-                framecounter = 0;
-                animationIndex++;
-                if (animationIndex >= spriteup.Length)
-                {
-                    animationIndex = 0;
-                }
-            }
-            else
-            {
-                framecounter++;
-            }
-            spriterenderer.sprite = spriteleft[animationIndex];
-        }
-        else if (animationDirection == AnimationDirection.Right)
-        {
-            if (ticksBetweenAnimation <= framecounter)
-            {
-                framecounter = 0;
-                animationIndex++;
-                if (animationIndex >= spriteright.Length)
-                {
-                    animationIndex = 0;
-                }
-            }
-            else
-            {
-                framecounter++;
-            }
-            spriterenderer.sprite = spriteright[animationIndex];
         }
     }
-    void CheckDirection()
+    private bool CheckDirection()
     {
+        AnimationDirection newDirection = AnimationDirection.Idle;
         if (Mathf.Abs(rigidBody.velocity.x) > Mathf.Abs(rigidBody.velocity.y))
         {
             if (Mathf.Abs(rigidBody.velocity.x) < 0.01f)
             {
-                animationDirection = AnimationDirection.Idle;
+                newDirection = AnimationDirection.Idle;
             }
             else if (rigidBody.velocity.x > 0.0f)
             {
-                animationDirection = AnimationDirection.Right;
+                newDirection = AnimationDirection.Right;
             }
             else
             {
-                animationDirection = AnimationDirection.Left;
+                newDirection = AnimationDirection.Left;
             }
         }
         else if (Mathf.Abs(rigidBody.velocity.y) > Mathf.Abs(rigidBody.velocity.x))
         {
             if (Mathf.Abs(rigidBody.velocity.y) < 0.01f)
             {
-                animationDirection = AnimationDirection.Idle;
+                newDirection = AnimationDirection.Idle;
             }
             else if (rigidBody.velocity.y > 0.0f)
             {
-                animationDirection = AnimationDirection.Up;
+                newDirection = AnimationDirection.Up;
             }
             else
             {
-                animationDirection = AnimationDirection.Down;
+                newDirection = AnimationDirection.Down;
             }
+        }
+
+        if (newDirection != animationDirection)
+        {
+            animationDirection = newDirection;
+            return true;
+        }
+        else
+        {
+            animationDirection = newDirection;
+            return false;
+        }
+    }
+
+    private SpriteAnimation GetAnim(AnimationDirection dir)
+    {
+        switch (dir)
+        {
+            case AnimationDirection.Up:
+                return animUp;
+            case AnimationDirection.Right:
+                return animRight;
+            case AnimationDirection.Down:
+                return animDown;
+            case AnimationDirection.Left:
+                return animLeft;
+            default:
+                return null;
         }
     }
 }
