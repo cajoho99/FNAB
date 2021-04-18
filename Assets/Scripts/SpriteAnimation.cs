@@ -6,11 +6,11 @@ public class SpriteAnimation : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public Sprite[] sprites;
+    public bool animationEnabled = false;
     public int ticksBetweenAnimation;
 
     private int animationIndex = 0;
     private int frameCounter = 0;
-    private bool animationEnabled = false;
 
     // Update is called once per frame
     void FixedUpdate()

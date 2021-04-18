@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6913808303692606236}
   - component: {fileID: 6913808303692606237}
   - component: {fileID: 928303461}
+  - component: {fileID: 1438652653829182050}
   m_Layer: 0
   m_Name: Conveyor
   m_TagString: Untagged
@@ -73,8 +74,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,10 +99,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
+  Position: {x: 0, y: 0}
+  width: 0
+  height: 0
   input: {fileID: 0}
   output: {fileID: 0}
   currentDirection: 1
-  conveyedObjects: []
+  idleObjects: []
   nextConveyor: {fileID: 0}
   conveyorSpeed: 1
 --- !u!61 &928303461
@@ -129,3 +134,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1438652653829182050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6913808303692606238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8caf804219f9048aff74c3a2ae16d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 6913808303692606236}
+  sprites:
+  - {fileID: -9064143846420569206, guid: 9b0724dc12258704399e799532cff4f0, type: 3}
+  - {fileID: 3164978340499355030, guid: 9b0724dc12258704399e799532cff4f0, type: 3}
+  animationEnabled: 1
+  ticksBetweenAnimation: 20
