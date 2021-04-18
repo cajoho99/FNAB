@@ -22,7 +22,6 @@ public class AbstractFactoryObject : MonoBehaviour
     {
         currentDirection = dir;
     }
-
     // Which objects the conveyor currently 'owns'
     public Queue<GenericFood> conveyedObjects = new Queue<GenericFood>();
 

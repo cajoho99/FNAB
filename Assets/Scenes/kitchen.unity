@@ -2364,33 +2364,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlight: {fileID: 11400000, guid: 34303d25145ab104f8fabf97fe65552d, type: 2}
   highlightMap: {fileID: 2013456866}
+  objectMap: {fileID: 1982102088}
   objectIndex: 0
-  objectsToPlace:
-  - tile: {fileID: 0}
-    tilemapLayer: {fileID: 332384058}
-  - tile: {fileID: 0}
-    tilemapLayer: {fileID: 332384058}
-  - tile: {fileID: 0}
-    tilemapLayer: {fileID: 709834880}
---- !u!114 &490129044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490129037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8caf804219f9048aff74c3a2ae16d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 490129038}
-  sprites:
-  - {fileID: -4078127884307937245, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
-  - {fileID: -6782512703495280713, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
-  - {fileID: 7090444670451523284, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
-  - {fileID: -6782512703495280713, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
-  ticksBetweenAnimation: 10
+  rotation: {x: 0, y: 0, z: 0}
+  placeableObjects:
+  - {fileID: 860214559516335062, guid: 8228753901658044499a2d329dff5f88, type: 3}
+  - {fileID: 1230584935909490595, guid: 2b8d5651ad69c1e478422123bd67e917, type: 3}
+  - {fileID: 6913808303692606238, guid: 2c6de5e6b4266664b9f450f8ab41f430, type: 3}
+  - {fileID: 7525135802018936280, guid: dc8f16f201dccfd4fab5e94e837de37f, type: 3}
 --- !u!1 &709834876
 GameObject:
   m_ObjectHideFlags: 0
