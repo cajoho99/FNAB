@@ -50,7 +50,8 @@ public class PlaceObjects : MonoBehaviour
         {
             Vector3 pos = objectMap.CellToWorld(objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
             Vector3 worldPos = new Vector3(pos.x + 0.4f, pos.y + 0.4f, pos.z);
-            Instantiate(placeableObjects[objectIndex], worldPos, Quaternion.Euler(rotation));
+            GameObject go = Instantiate(placeableObjects[objectIndex], worldPos, Quaternion.Euler(rotation));
+            go.GetComponent<AbstractFactoryObject>().setDirection(rotation.z);
         }
 
         Vector3Int tilemapPos = objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
