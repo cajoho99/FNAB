@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public static PlayerController instance;
     public float movementSpeed;
     public float smoothing;
     public enum AnimationDirection
@@ -23,8 +25,35 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private AnimationDirection animationDirection = AnimationDirection.Idle;
 
+    [SerializeField] private List<GenericFood> inventory = new List<GenericFood>();
+
+
+    public void AddToInventory(List<GenericFood> foods)
+    {
+        if(inventory.Count == 0)
+        {
+            inventory = foods;
+        }
+    }
+
+    public void ClearInventory() 
+    {
+        inventory = new List<GenericFood>();
+    }
+
+    public List<GenericFood> GetInventory()
+    {
+        return inventory;
+    }
+
+    public bool InventoryIsEmpty()
+    {
+        return inventory.Count == 0;
+    }
+
     private void Awake()
     {
+        instance = this;
         rigidBody = GetComponent<Rigidbody2D>();
     }
 

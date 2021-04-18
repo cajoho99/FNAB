@@ -36,4 +36,19 @@ public class Hopper : AbstractFactoryObject
         }
 
     }
+
+    /// <summary>
+    /// OnMouseDown is called when the user has pressed the mouse button while
+    /// over the GUIElement or Collider.
+    /// </summary>
+    private void OnMouseDown()
+    {
+        Debug.Log("Clicked on hopper!");
+        List<GenericFood> inventory = PlayerController.instance.GetInventory();
+        PlayerController.instance.ClearInventory();
+        foreach (var item in inventory)
+        {
+            addConveyedItem(item);
+        }
+    }
 }

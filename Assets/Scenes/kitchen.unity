@@ -5428,6 +5428,19 @@ PrefabInstance:
       propertyPath: highlightMap
       value: 
       objectReference: {fileID: 2013456866}
+    - target: {fileID: 490129043, guid: ed37d549e3f26af479b7ca6bd72d5193, type: 3}
+      propertyPath: placeableObjects.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 490129043, guid: ed37d549e3f26af479b7ca6bd72d5193, type: 3}
+      propertyPath: placeableObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 882185815384832587, guid: 4038f52934826534e821cc2cf4b31b88,
+        type: 3}
+    - target: {fileID: 490129043, guid: ed37d549e3f26af479b7ca6bd72d5193, type: 3}
+      propertyPath: placeableObjects.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5263503681745845312, guid: ed37d549e3f26af479b7ca6bd72d5193,
         type: 3}
       propertyPath: m_Size.x

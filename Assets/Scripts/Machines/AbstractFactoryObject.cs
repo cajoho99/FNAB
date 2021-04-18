@@ -32,7 +32,7 @@ public class AbstractFactoryObject : MonoBehaviour
     public virtual void addConveyedItem(GenericFood go)
     {
         conveyedObjects.Enqueue(go);
-        go.GetComponent<GameObject>().SetActive(true);
+        go.gameObject.SetActive(true);
         go.transform.position = new Vector3(transform.position.x, transform.position.y);
 
     }

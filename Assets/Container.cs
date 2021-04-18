@@ -35,7 +35,7 @@ public class Container : AbstractFactoryObject
         List<GenericFood> ret = new List<GenericFood>();
         foreach (GenericFood gf in containedItems)
         {
-            gf.GetComponent<GameObject>().SetActive(false);
+            gf.gameObject.SetActive(false);
             ret.Add(gf);
         }
         foreach (GenericFood gf in ret)
@@ -59,5 +59,21 @@ public class Container : AbstractFactoryObject
         {
             containedItems.Add(Instantiate(generatorItem, transform.position, transform.rotation).GetComponent<GenericFood>());
         }
+    }
+
+    /// <summary>
+    /// OnMouseDown is called when the user has pressed the mouse button while
+    /// over the GUIElement or Collider.
+    /// </summary>
+    void OnMouseDown()
+    {
+        Debug.Log("Container was emptied!");
+        if(PlayerController.instance.InventoryIsEmpty())
+        {
+            PlayerController.instance.AddToInventory(GetAllItems());
+        }
+        // if invetory empty
+        // Get all items
+        // Add to player inventory 
     }
 }

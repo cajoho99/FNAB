@@ -74,7 +74,6 @@ public class PlaceObjects : MonoBehaviour
                 Vector3 worldPos = new Vector3(pos.x + 0.4f, pos.y + 0.4f, pos.z);
                 GameObject go = Instantiate(placeableObjects[objectIndex], worldPos, Quaternion.Euler(new Vector3(0, 0, 0)));
                 AbstractFactoryObject abstractFactoryObject = go.GetComponent<AbstractFactoryObject>();
-                Debug.Log("Position: " + intPos.x + " " + intPos.y);
                 abstractFactories[intPos.x, intPos.y] = abstractFactoryObject;
                 if(rotation == 0)
                 {
