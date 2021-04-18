@@ -2312,7 +2312,10 @@ MonoBehaviour:
   objectIndex: 0
   rotation: {x: 0, y: 0, z: 0}
   placeableObjects:
-  - {fileID: 0}
+  - {fileID: 860214559516335062, guid: 8228753901658044499a2d329dff5f88, type: 3}
+  - {fileID: 1230584935909490595, guid: 2b8d5651ad69c1e478422123bd67e917, type: 3}
+  - {fileID: 6913808303692606238, guid: 2c6de5e6b4266664b9f450f8ab41f430, type: 3}
+  - {fileID: 7525135802018936280, guid: dc8f16f201dccfd4fab5e94e837de37f, type: 3}
 --- !u!1 &709834876
 GameObject:
   m_ObjectHideFlags: 0

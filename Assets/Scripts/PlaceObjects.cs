@@ -39,17 +39,18 @@ public class PlaceObjects : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            this.rotation = new Vector3(0, 0, mod((int)rotation.z - 90, 360));
+            this.rotation = new Vector3(0, 0, mod((int)rotation.z + 90, 360));
         }
         if(Input.GetKeyDown(KeyCode.E))
         {
-            this.rotation = new Vector3(0, 0, mod((int)rotation.z + 90, 360));
+            this.rotation = new Vector3(0, 0, mod((int)rotation.z - 90, 360));
         }
 
         if(Input.GetMouseButtonDown(0))
         {
-            Vector3Int pos = objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            Instantiate(placeableObjects[objectIndex], pos, Quaternion.Euler(rotation));
+            Vector3 pos = objectMap.CellToWorld(objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
+            Vector3 worldPos = new Vector3(pos.x + 0.4f, pos.y + 0.4f, pos.z);
+            Instantiate(placeableObjects[objectIndex], worldPos, Quaternion.Euler(rotation));
         }
 
         Vector3Int tilemapPos = objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
@@ -60,6 +61,7 @@ public class PlaceObjects : MonoBehaviour
     {
         highlightMap.ClearAllTiles();
         highlightMap.SetTile(tilemapPos, highlight);
+        highlightMap.SetTransformMatrix(tilemapPos, Matrix4x4.Rotate(Quaternion.Euler(rotation)));
     }
 
     private int mod(int x, int m) {
