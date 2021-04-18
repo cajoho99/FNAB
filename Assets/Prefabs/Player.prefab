@@ -13,6 +13,11 @@ GameObject:
   - component: {fileID: 5263503681745845313}
   - component: {fileID: 5263503681745845342}
   - component: {fileID: 5263503681745845343}
+  - component: {fileID: 490129040}
+  - component: {fileID: 490129041}
+  - component: {fileID: 490129042}
+  - component: {fileID: 490129043}
+  - component: {fileID: 6448884829773588594}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -49,9 +54,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.16, y: 0.18}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -94,10 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  smoothing: 0.2
-  tilemap: {fileID: 0}
-  highlightMap: {fileID: 0}
-  highlight: {fileID: 11400000, guid: 75edcd3447611c14fadd1331b5e1b819, type: 2}
+  smoothing: 0.05
+  animUp: {fileID: 6448884829773588594}
+  animRight: {fileID: 490129042}
+  animDown: {fileID: 490129041}
+  animLeft: {fileID: 490129040}
 --- !u!212 &5263503681745845343
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -138,8 +144,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 2107419051131646170, guid: fb7aff356034cc9489c0dc6517c113f6,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -149,3 +156,105 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &490129040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263503681745845340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8caf804219f9048aff74c3a2ae16d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Animation left
+  spriteRenderer: {fileID: 5263503681745845343}
+  sprites:
+  - {fileID: -4859380471300258614, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: -7986778278669207248, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: 1270375674470864471, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: -7986778278669207248, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  ticksBetweenAnimation: 10
+--- !u!114 &490129041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263503681745845340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8caf804219f9048aff74c3a2ae16d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Animation down
+  spriteRenderer: {fileID: 5263503681745845343}
+  sprites:
+  - {fileID: 2107419051131646170, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: 2281391072715154597, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: -2979660313528299272, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: 2281391072715154597, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  ticksBetweenAnimation: 10
+--- !u!114 &490129042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263503681745845340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8caf804219f9048aff74c3a2ae16d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Animation right
+  spriteRenderer: {fileID: 5263503681745845343}
+  sprites:
+  - {fileID: -33305427691782590, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: -7446500790369089995, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: 4974484899180539388, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: -7446500790369089995, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  ticksBetweenAnimation: 10
+--- !u!114 &490129043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263503681745845340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4188c65dc002a8540836f6403c0c4655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 11400000, guid: 34303d25145ab104f8fabf97fe65552d, type: 2}
+  highlightMap: {fileID: 0}
+  objectMap: {fileID: 0}
+  objectIndex: 0
+  rotation: {x: 0, y: 0, z: 0}
+  placeableObjects:
+  - {fileID: 860214559516335062, guid: 8228753901658044499a2d329dff5f88, type: 3}
+  - {fileID: 1230584935909490595, guid: 2b8d5651ad69c1e478422123bd67e917, type: 3}
+  - {fileID: 6913808303692606238, guid: 2c6de5e6b4266664b9f450f8ab41f430, type: 3}
+  - {fileID: 7525135802018936280, guid: dc8f16f201dccfd4fab5e94e837de37f, type: 3}
+--- !u!114 &6448884829773588594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263503681745845340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8caf804219f9048aff74c3a2ae16d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Animation up
+  spriteRenderer: {fileID: 5263503681745845343}
+  sprites:
+  - {fileID: -4078127884307937245, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: -6782512703495280713, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: 7090444670451523284, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  - {fileID: -6782512703495280713, guid: fb7aff356034cc9489c0dc6517c113f6, type: 3}
+  ticksBetweenAnimation: 10
