@@ -17,15 +17,25 @@ public class MachineOven : AbstractFactoryObject
     // Update is called once per frame
     void Update()
     {
-        if (Counter >= SecondsToProcess * 60)
+        if (conveyedObjects.Count == 0)
+        {
+            return;
+        }
+        else
+        {
+            
+            Counter++;
+        }
+        
+        if (Counter >= (SecondsToProcess * 60))
         {
             if(nextConveyor == null)
             {
                 return;
             }
-            nextConveyor.addConveyedItem(conveyedObjects[0]);
-            conveyedObjects.Remove(conveyedObjects[0]);
-
+            
+            nextConveyor.addConveyedItem(conveyedObjects.Dequeue());
+            Counter = 0;
         }
     }
 }
