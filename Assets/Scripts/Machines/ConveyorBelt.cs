@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class ConveyorBelt : AbstractFactoryObject
 {
-
-
     // ScalableSpeed for the conveyor
     public float conveyorSpeed = 1;
-    public SpriteAnimation spriteAnimation;
-
+    public SpriteRenderer spriteRenderer;
+    public Sprite[] sprites;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
-        spriteAnimation.Enable();
     }
 
     public override void setDirection(DIRECTION dir)
@@ -42,6 +39,11 @@ public class ConveyorBelt : AbstractFactoryObject
     // Update is called once per frame
     void Update()
     {
+        // Animate
+        var animationIndex = AnimationSync.GetAnimationIndex(Mathf.FloorToInt(20.0f / conveyorSpeed)) % sprites.Length;
+        spriteRenderer.sprite = sprites[animationIndex];
+
+        // Update rotation from direction
         bool dequeue = false;
         foreach (GenericFood obj in conveyedObjects)
         {
