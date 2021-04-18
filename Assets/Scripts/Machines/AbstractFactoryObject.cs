@@ -29,7 +29,7 @@ public class AbstractFactoryObject : MonoBehaviour
     public List<GenericFood> idleObjects = new List<GenericFood>();
 
 
-    public void addConveyedItem(GenericFood go)
+    public virtual void addConveyedItem(GenericFood go)
     {
         conveyedObjects.Enqueue(go);
         go.GetComponent<GameObject>().SetActive(true);
@@ -47,6 +47,5 @@ public class AbstractFactoryObject : MonoBehaviour
             conveyor.addConveyedItem(idleObj);
         }
     }
-
  
 }

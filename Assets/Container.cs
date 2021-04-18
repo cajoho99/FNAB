@@ -13,7 +13,10 @@ public class Container : AbstractFactoryObject
     public GenericFood generatorItem;
 
 
-
+    public override void addConveyedItem(GenericFood go)
+    {
+        this.InsertItem(go);
+    }
     public void InsertItem(GenericFood gf)
     {
         containedItems.Add(gf);
