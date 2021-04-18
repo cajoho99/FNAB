@@ -41,6 +41,9 @@ TextureImporter:
   - first:
       213: -3608839036269280159
     second: food-tilemap_12
+  - first:
+      213: 7382501348860095923
+    second: food-tilemap_13
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -385,7 +388,7 @@ TextureImporter:
       name: food-tilemap_12
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 32
         width: 16
         height: 16
@@ -398,6 +401,27 @@ TextureImporter:
       bones: []
       spriteID: 1644b975404daedc0800000000000000
       internalID: -3608839036269280159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: food-tilemap_13
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bde5a4dcd9e37660800000000000000
+      internalID: 7382501348860095923
       vertices: []
       indices: 
       edges: []
