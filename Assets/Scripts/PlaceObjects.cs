@@ -51,7 +51,27 @@ public class PlaceObjects : MonoBehaviour
             Vector3 pos = objectMap.CellToWorld(objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
             Vector3 worldPos = new Vector3(pos.x + 0.4f, pos.y + 0.4f, pos.z);
             GameObject go = Instantiate(placeableObjects[objectIndex], worldPos, Quaternion.Euler(rotation));
-            go.GetComponent<AbstractFactoryObject>().setDirection(rotation.z);
+            AbstractFactoryObject abstractFactoryObject = go.GetComponent<AbstractFactoryObject>();
+            if(rotation.z <= 1f)
+            {
+                abstractFactoryObject.setDirection(AbstractFactoryObject.DIRECTION.SOUTH);
+            }
+            else if(rotation.z <= 91)
+            {
+                abstractFactoryObject.setDirection(AbstractFactoryObject.DIRECTION.WEST);
+            }
+            else if(rotation.z <= 181f)
+            {
+                abstractFactoryObject.setDirection(AbstractFactoryObject.DIRECTION.NORTH);
+            }
+            else if(rotation.z <= 241f)
+            {
+                abstractFactoryObject.setDirection(AbstractFactoryObject.DIRECTION.EAST);
+            }
+            else 
+            {
+                Debug.LogError("This should not be happening. If happening consult consultant functional ab");
+            }
         }
 
         Vector3Int tilemapPos = objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));

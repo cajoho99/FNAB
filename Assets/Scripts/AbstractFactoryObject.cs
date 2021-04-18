@@ -22,30 +22,6 @@ public class AbstractFactoryObject : MonoBehaviour
     {
         currentDirection = dir;
     }
-
-    public void setDirection(float dir) 
-    {
-        if(dir <= 1f)
-        {
-            currentDirection = DIRECTION.NORTH;
-        }
-        else if(dir <= 91)
-        {
-            currentDirection = DIRECTION.EAST;
-        }
-        else if(dir <= 181f)
-        {
-            currentDirection = DIRECTION.SOUTH;
-        }
-        else if(dir <= 241f)
-        {
-            currentDirection = DIRECTION.WEST;
-        }
-        else 
-        {
-            Debug.LogError("This should not be happening. If happening consult consultant functional ab");
-        }
-    }
     // Which objects the conveyor currently 'owns'
     public Queue<GenericFood> conveyedObjects = new Queue<GenericFood>();
 
