@@ -32,6 +32,12 @@ TextureImporter:
   - first:
       213: -958022481008068961
     second: FNAB-tilemap_9
+  - first:
+      213: 7137256358355892340
+    second: FNAB-tilemap_10
+  - first:
+      213: -7427434871023481874
+    second: FNAB-tilemap_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -326,6 +332,48 @@ TextureImporter:
       bones: []
       spriteID: f96fcac11ab64b2f0800000000000000
       internalID: -958022481008068961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FNAB-tilemap_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47873b6d7d0ac0360800000000000000
+      internalID: 7137256358355892340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FNAB-tilemap_11
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eebcb4846537ce890800000000000000
+      internalID: -7427434871023481874
       vertices: []
       indices: 
       edges: []
