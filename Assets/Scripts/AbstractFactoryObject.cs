@@ -24,7 +24,7 @@ public class AbstractFactoryObject : MonoBehaviour
     }
 
     // Which objects the conveyor currently 'owns'
-    public List<GenericFood> conveyedObjects = new List<GenericFood>();
+    public Queue<GenericFood> conveyedObjects = new Queue<GenericFood>();
 
     // Objects on the floor in front of the conveyor
     public List<GenericFood> idleObjects = new List<GenericFood>();
@@ -32,14 +32,14 @@ public class AbstractFactoryObject : MonoBehaviour
 
     public void addConveyedItem(GenericFood go)
     {
-        conveyedObjects.Add(go);
+        conveyedObjects.Enqueue(go);
         go.transform.position = new Vector3(transform.position.x, transform.position.y);
 
     }
 
     // Which the next conveyor is
-    public ConveyorBelt nextConveyor = null;
-    public void setNextConveyor(ConveyorBelt conveyor)
+    public AbstractFactoryObject nextConveyor = null;
+    public void setNextConveyor(AbstractFactoryObject conveyor)
     {
         this.nextConveyor = conveyor;
         foreach (GenericFood idleObj in idleObjects)
@@ -47,4 +47,6 @@ public class AbstractFactoryObject : MonoBehaviour
             conveyor.addConveyedItem(idleObj);
         }
     }
+
+ 
 }

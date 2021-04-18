@@ -14,15 +14,12 @@ public class ConveyorBelt :  AbstractFactoryObject
     void Start()
     {
        
-
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        List<GenericFood> toBeRemoved = new List<GenericFood>();
+        bool dequeue = false;
         foreach(GenericFood obj in conveyedObjects)
         {
             if(currentDirection == DIRECTION.NORTH)
@@ -48,20 +45,22 @@ public class ConveyorBelt :  AbstractFactoryObject
             {
                 if (nextConveyor == null)
                 {
-                    toBeRemoved.Add(obj);
                     idleObjects.Add(obj);
+                    dequeue = true;
                 }
                 else
                 {
                     nextConveyor.addConveyedItem(obj);
-                    toBeRemoved.Add(obj);
+                    dequeue = true;
                 }
             }
         }
 
-        foreach (GenericFood obj in toBeRemoved)
+        if (dequeue)
         {
-            conveyedObjects.Remove(obj);
+            conveyedObjects.Dequeue();
         }
+
+
     }
 }
