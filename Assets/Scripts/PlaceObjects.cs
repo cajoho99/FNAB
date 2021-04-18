@@ -19,10 +19,12 @@ public class PlaceObjects : MonoBehaviour
         
     }
 
+    public List<TileInstance> currentTiles = new List<TileInstance>();
+
     // Update is called once per frame
     void Update()
     {
-        if(DayNightManager.IsNight())
+        if(DayNightManager.IsDay())
         {
             return;
         }
@@ -37,6 +39,7 @@ public class PlaceObjects : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
+
             Vector3Int pos = objectsToPlace[objectIndex].tilemapLayer.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             objectsToPlace[objectIndex].tilemapLayer.SetTile(pos, objectsToPlace[objectIndex].tile);
         }
@@ -55,6 +58,23 @@ public class PlaceObjects : MonoBehaviour
         return (x%m + m)%m;
     }
 }
+
+public class TileInstance
+{
+    public Vector3Int position;
+    public int layer;
+    public Tile tile;
+
+    public TileInstance(Vector3Int position, int layer, Tile tile)
+    {
+        this.position = position;
+        this.layer = layer;
+        this.tile = tile;
+    }
+}
+
+
+
 
 [System.Serializable]
 public struct ObjectToPlace

@@ -19,40 +19,28 @@ public class Customer : MonoBehaviour
         this.socialSatisfaction = socialSatisfaction;
     }
 
-    public float ServeCustomer(GenericFood food)
+    public float ServeCustomer(Dish dish)
     {
-        float score = 0;
-        foreach (var ingredient in food.ingredients)
-        {
-            if(this.preferences.likedIngredients.Contains(ingredient))
-            {
-                score++;
-            }
-            else if(this.preferences.dislikedIngredients.Contains(ingredient))
-            {
-                score--;
-            }
+        float points = 3;
+        if (!preferences.likedConsistencies.Contains(dish.protein.consistency)) {
+            points -= 1;
         }
-        if(disabilities == Disabilities.CannotSwallow && food.consistency == Consistency.Pureed)
+        if (!preferences.likedConsistencies.Contains(dish.vegetable.consistency))
         {
-            score++;
+            points -= 1;
         }
-        else if(disabilities == Disabilities.CannotSwallow && food.consistency == Consistency.Standard)
+        if (!preferences.likedConsistencies.Contains(dish.starch.consistency))
         {
-            score--;
+            points -= 1;
         }
-        return score;
+        return points;
     }
 }
 
 public struct Preferences
 {
-    public List<Ingredient> likedIngredients;
-    public List<Ingredient> dislikedIngredients;
     public List<Consistency> likedConsistencies;
     public List<Consistency> dislikedConsistencies;
-    public List<FoodTexture> likedTextures;
-    public List<FoodTexture> dislikedTextures;
 }
 
 public enum Disabilities
