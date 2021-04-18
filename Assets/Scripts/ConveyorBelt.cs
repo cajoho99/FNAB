@@ -8,12 +8,14 @@ public class ConveyorBelt : AbstractFactoryObject
 
     // ScalableSpeed for the conveyor
     public float conveyorSpeed = 1;
+    public SpriteAnimation spriteAnimation;
 
 
     // Start is called before the first frame update
     void Start()
     {
         transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
+        spriteAnimation.Enable();
     }
 
     public override void setDirection(DIRECTION dir)
@@ -23,13 +25,13 @@ public class ConveyorBelt : AbstractFactoryObject
         switch (dir)
         {
             case DIRECTION.NORTH:
-                transform.Rotate(0.0f, 0.0f, 90.0f - curAngle, Space.Self);
+                transform.Rotate(0.0f, 0.0f, -90.0f - curAngle, Space.Self);
                 break;
             case DIRECTION.EAST:
                 transform.Rotate(0.0f, 0.0f, 0.0f - curAngle, Space.Self);
                 break;
             case DIRECTION.SOUTH:
-                transform.Rotate(0.0f, 0.0f, -90.0f - curAngle, Space.Self);
+                transform.Rotate(0.0f, 0.0f, 90.0f - curAngle, Space.Self);
                 break;
             case DIRECTION.WEST:
                 transform.Rotate(0.0f, 0.0f, -180.0f - curAngle, Space.Self);
