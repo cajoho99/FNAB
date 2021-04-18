@@ -6,13 +6,14 @@ using UnityEngine.Tilemaps;
 
 public class PlaceObjects : MonoBehaviour
 {
-    public const int worldWidth = 18;
-    public const int worldHeight = 8;
+    public const int worldWidth = 22;
+    public const int worldHeight = 12;
+
     public Tile highlight;
     public Tilemap highlightMap;
     public Tilemap objectMap;
 
-    public AbstractFactoryObject[,] abstractFactories = new AbstractFactoryObject[18, 8];
+    public AbstractFactoryObject[,] abstractFactories = new AbstractFactoryObject[worldWidth, worldHeight];
     [SerializeField] private int objectIndex = 0;
     
     public int rotation;
@@ -29,6 +30,7 @@ public class PlaceObjects : MonoBehaviour
     {
         if(DayNightManager.IsDay())
         {
+            highlightMap.ClearAllTiles();
             return;
         }
         if(Input.GetKeyDown(KeyCode.R)){
@@ -122,7 +124,18 @@ public class PlaceObjects : MonoBehaviour
         }
 
         Vector3Int tilemapPos = objectMap.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        HighlightTile(tilemapPos);
+        Vector3Int highlightIntPos = new Vector3Int(tilemapPos.x + worldWidth / 2, tilemapPos.y + worldHeight / 2, 0);
+        if(     tilemapPos.x + worldWidth / 2 >= 0 
+            &&  tilemapPos.x + worldWidth / 2 <= worldWidth 
+            &&  tilemapPos.y + worldHeight / 2 >= 0
+            &&  tilemapPos.y + worldHeight / 2 <= worldHeight)
+        {
+            HighlightTile(tilemapPos);
+        }
+        else
+        {
+            highlightMap.ClearAllTiles();
+        }
     }
 
     void HighlightTile(Vector3Int tilemapPos)
