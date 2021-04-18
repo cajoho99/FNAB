@@ -24,8 +24,6 @@ public class PlaceObjects : MonoBehaviour
         
     }
 
-    public List<TileInstance> currentTiles = new List<TileInstance>();
-
     // Update is called once per frame
     void Update()
     {
